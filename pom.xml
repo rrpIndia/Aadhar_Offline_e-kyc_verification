@@ -8,31 +8,25 @@
 	<version>1.0-SNAPSHOT</version>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>17</java.version>
 	</properties>
 
 	<dependencies>
-
-    <dependency>
-        <groupId>javax.xml.bind</groupId>
-        <artifactId>jaxb-api</artifactId>
-        <version>2.3.1</version>
-    </dependency>
-
-    <!-- JAXB Runtime (needed if marshalling/unmarshalling) -->
-    <dependency>
-        <groupId>org.glassfish.jaxb</groupId>
-        <artifactId>jaxb-runtime</artifactId>
-        <version>2.3.1</version>
-    </dependency>
-
-    <!-- Needed if you're using javax.activation.DataHandler etc. -->
-    <dependency>
-        <groupId>javax.activation</groupId>
-        <artifactId>activation</artifactId>
-        <version>1.1.1</version>
-    </dependency>
-
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>core</artifactId>
@@ -43,31 +37,32 @@
 			<artifactId>javase</artifactId>
 			<version>3.3.0</version>
 		</dependency>
- <dependency>
-    <groupId>org.bouncycastle</groupId>
-    <artifactId>bcprov-jdk15on</artifactId>
-    <version>1.57</version>
-</dependency> 
-<!-- https://mvnrepository.com/artifact/javax.security.enterprise/javax.security.enterprise-api -->
-<dependency>
-    <groupId>javax.security.enterprise</groupId>
-    <artifactId>javax.security.enterprise-api</artifactId>
-    <version>1.0-b07</version>
-</dependency>
-
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.57</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.security.enterprise</groupId>
+			<artifactId>javax.security.enterprise-api</artifactId>
+			<version>1.0-b07</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<!-- Original compiler plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.6.2</version>
+				<version>3.11.0</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+
+			<!-- Dependency copy plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -87,6 +82,8 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- Jar plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -101,7 +98,19 @@
 					</archive>
 				</configuration>
 			</plugin>
+
+			<!-- Exec plugin for SimpleServer -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<mainClass>com.aadhaar.xmlreader.SimpleServer</mainClass>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-    <name>Offline ekyc verification java</name>
+
+	<name>Offline ekyc verification java</name>
 </project>
+

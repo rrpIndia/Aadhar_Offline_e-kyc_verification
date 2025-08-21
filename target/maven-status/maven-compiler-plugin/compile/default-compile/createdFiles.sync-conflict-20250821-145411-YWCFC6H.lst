@@ -1,5 +1,4 @@
 com/aadhaar/xmlreader/SimpleServer.class
 com/aadhaar/xmlreader/NamespaceFilter.class
+com/aadhaar/xmlreader/SimpleServer$SignupHandler.class
 com/aadhaar/xmlreader/SignatureVerifierOneFile.class
-com/aadhaar/xmlreader/SimpleServer$SubmitHandler.class
-com/aadhaar/xmlreader/SimpleServer$FormHandler.class
